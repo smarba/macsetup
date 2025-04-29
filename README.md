@@ -22,6 +22,6 @@ install dropbox
 
 pull down ansible repo from github
 
-<pre><code>git clone</code></pre>
+<pre><code>git clone git@github.com:smarba/ansible.git</code></pre>
 
 <pre><code> curl -L -o /Users/smarba/Downloads/dropbox_installer.dmg "https://www.dropbox.com/download?os=mac&plat=mac"</code> </pre>
