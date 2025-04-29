@@ -20,3 +20,8 @@ log into github and save the ssh key to github
 install dropbox
 <pre><code>https://www.dropbox.com/download?os=mac&plat=mac </code> </pre>
 
+pull down ansible repo from github
+
+<pre><code>git clone</code></pre>
+
+<pre><code> curl -L -o /Users/smarba/Downloads/dropbox_installer.dmg "https://www.dropbox.com/download?os=mac&plat=mac"</code> </pre>
