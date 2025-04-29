@@ -17,4 +17,6 @@ create ssh key
 <code> ssh-keygen </code>
 
 log into github and save the ssh key to github
+install dropbox
+<pre> ```https://www.dropbox.com/install </pre>
 
