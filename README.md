@@ -16,5 +16,5 @@ using homebrew, install git, ansible
 create ssh key
 <code> ssh-keygen </code>
 
-log into guthub and save the ssh key to github
+log into github and save the ssh key to github
 
