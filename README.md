@@ -18,5 +18,5 @@ create ssh key
 
 log into github and save the ssh key to github
 install dropbox
-<pre><code>https://www.dropbox.com/install </code> </pre>
+<pre><code>https://www.dropbox.com/download?os=mac&plat=mac </code> </pre>
 
