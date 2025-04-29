@@ -8,7 +8,7 @@ install xcode tools
 <code> xcode-select --install </code>
 
 install homebrew
-<code> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </code>
+<pre> <code> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </code> </pre>
 
 using homebrew, install git, ansible
 <code> brew install git ansible </code>
