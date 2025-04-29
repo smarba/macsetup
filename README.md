@@ -5,7 +5,7 @@ This is the beginning of a mac setup script to run to configure a new mac the wa
 This first step is to set the three different hostnames (or change them on an existing system) to the desired name
 
 install xcode tools
-<code> xcode-select --install </code>
+<pre> xcode-select --install </pre>
 
 install homebrew
 <pre> <code> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </code> </pre>
