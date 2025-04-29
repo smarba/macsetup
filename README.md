@@ -6,3 +6,15 @@ This first step is to set the three different hostnames (or change them on an ex
 
 install xcode tools
 <code> xcode-select --install </code>
+
+install homebrew
+<code> /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </code>
+
+using homebrew, install git, ansible
+<code> brew install git ansible </code>
+
+create ssh key
+<code> ssh-keygen </code>
+
+log into guthub and save the ssh key to github
+
