@@ -1,11 +1,48 @@
 #!/bin/zsh
 
-# Install Xcode Command Line Tools
-echo "Installing Xcode Command Line Tools..."
-xcode-select --install
+# Prompt user for new hostname
+read "raw_name?Enter the new host name: "
 
-# Wait for user to complete the installation
-read "REPLY?Press [Enter] once Xcode Command Line Tools installation has completed..."
+# Trim leading/trailing whitespace and normalize internal spaces
+raw_name=$(echo "$raw_name" | awk '{$1=$1; print}')
+
+# Remove spaces for HostName and LocalHostName (required by macOS)
+clean_name="${raw_name// /}"
+
+# Set the various hostname types
+sudo scutil --set HostName "$clean_name"
+sudo scutil --set LocalHostName "$clean_name"
+sudo scutil --set ComputerName "$raw_name"
+
+# Refresh DNS/mDNS cache
+sudo dscacheutil -flushcache
+sudo killall -HUP mDNSResponder
+
+# Confirm
+echo "✅ Hostnames updated successfully:"
+echo "  ComputerName:    $raw_name"
+echo "  HostName:        $clean_name"
+echo "  LocalHostName:   $clean_name"
+
+# Check if Xcode Command Line Tools are already installed
+if xcode-select -p &>/dev/null; then
+  echo "Xcode Command Line Tools are already installed."
+else
+  echo "Xcode Command Line Tools are not installed."
+  # Install Xcode Command Line Tools
+  echo "Installing Xcode Command Line Tools..."
+  xcode-select --install
+
+  # Wait for user to complete the installation
+  read "REPLY?Press [Enter] once Xcode Command Line Tools installation has completed..."
+fi
+
+#Enable WebInterface for CUPS
+echo "Enabling WebInterface for CUPS..."
+cupsctl WebInterface=Yes
+
+
+
 
 # Install Homebrew (this will automatically add Homebrew to the PATH)
 if ! command -v brew &>/dev/null; then
@@ -16,8 +53,9 @@ else
 fi
 
 # Install Git and Ansible
-echo "Installing Git and Ansible..."
-brew install git ansible
+echo "Installing brew packages..."
+echo "Installing Git, Ansible, and zsh-syntax-highlighting..."
+brew install git ansible zsh-syntax-highlighting
 
 # Check if SSH key exists
 if [ -f ~/.ssh/id_ed25519 ]; then
@@ -46,7 +84,174 @@ cat ~/.ssh/id_ed25519.pub
 echo
 read "REPLY?Press [Enter] after adding your SSH key to GitHub..."
 
+# Test SSH connection to GitHub
+echo "Testing SSH connection to GitHub..."
+ssh -T git@github.com
+if [ $? -ne 0 ]; then
+  echo "SSH connection to GitHub failed. Please check your SSH key and GitHub settings."
+  exit 1
+else
+  echo "SSH connection to GitHub successful!"
+fi
+
+# Setup .gitconfig file
+
+# Set Git user name and email
+echo "Setting up Git configuration..."
+echo "Setting username and email..."
+git config --global user.name "Seth Abrams"
+git config --global user.email "smarba@gmail.com"
+
+# Set default editor
+echo "Setting default editor to nano..."
+git config --global core.editor "nano"
+
+# Enable color UI
+echo "Enabling color UI..."
+git config --global color.ui auto
+
+# Set default branch name when running `git init`
+echo "Setting default branch name to 'main'..."
+git config --global init.defaultBranch main
+
+# Set up default push settings
+echo "Setting default push behavior to 'simple'..."
+git config --global push.default simple
+
+
+
+
 # Now you can clone repositories
 echo "You can now clone your GitHub repositories using SSH!"
+
+#####Set Up .ZSHRC#####
+echo "Setting up .zshrc..."
+# Check if .zshrc already exists
+if [ -f ~/.zshrc ]; then
+  echo ".zshrc already exists. Skipping creation."
+else
+  echo "Creating .zshrc..."
+  touch ~/.zshrc
+fi
+
+
+# Custom Zsh Configuration
+ZSHRC="$HOME/.zshrc"
+
+# Append core ZSH config
+cat << 'EOF' >> "$ZSHRC"
+
+# === Custom ZSH Enhancements ===
+
+# Enable up/down arrow history prefix search
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+
+# Case-insensitive tab completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# Show completion menu immediately
+zstyle ':completion:*' menu select
+
+# Use vi keybindings (Not being used for now)
+# bindkey -v
+EOF
+
+# Append syntax highlighting if installed
+echo "Checking for zsh-syntax-highlighting in .zshrc file..."
+if ! grep -q "zsh-syntax-highlighting" "$ZSHRC"; then
+  echo "Appending zsh-syntax-highlighting to .zshrc..."
+  echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> "$ZSHRC"
+else
+  echo "zsh-syntax-highlighting already exists in .zshrc. Skipping."
+fi
+
+echo "✅ ZSH config updated."
+
+# Distribute SSH Keys to Pis
+echo "Distributing SSH keys to Raspberry Pis..."
+# Define hosts
+hosts=(pi@pi0{1..5} pi@pi07 pi4-08)
+
+# Arrays to hold summary info
+successes=()
+skipped=()
+failures=()
+
+for pi in $hosts; do
+  echo "🔄 Processing $pi..."
+
+  if ssh -o BatchMode=yes -o ConnectTimeout=5 "$pi" exit 2>/dev/null; then
+    echo "✅ Key already set up for $pi, skipping."
+    skipped+=("$pi")
+  else
+    echo "🚀 Attempting to copy key to $pi..."
+    if ssh-copy-id -i ~/.ssh/id_ed25519.pub "$pi" 2>/dev/null; then
+      echo "✅ Key successfully copied to $pi."
+      successes+=("$pi")
+    else
+      echo "❌ Failed to copy key to $pi — host might be offline or unreachable."
+      failures+=("$pi")
+    fi
+  fi
+done
+
+# Print summary
+echo "\n📋 SSH Key Distribution Summary:"
+echo "--------------------------------"
+echo "✅ Successes:"
+for host in $successes; do echo "  - $host"; done
+
+echo "\n⏭️ Skipped (already set up):"
+for host in $skipped; do echo "  - $host"; done
+
+echo "\n❌ Failures:"
+for host in $failures; do echo "  - $host"; done
+
+#Install Tailscale Standalone
+echo "Installing Tailscale Standalone..."
+
+
+# Check if Tailscale is already installed
+if [ -d "/Applications/Tailscale.app" ]; then
+  echo "Tailscale is already installed."
+  tailscale_version=$(defaults read /Applications/Tailscale.app/Contents/Info.plist CFBundleShortVersionString) 
+  echo "Tailscale version: $tailscale_version"
+else
+  # Get the latest version URL dynamically
+  LATEST_VERSION_URL="https://pkgs.tailscale.com/stable/"
+  LATEST_PKG=$(curl -s $LATEST_VERSION_URL | grep -o 'href="[^"]*macos\.pkg"' | sed 's/href="//' | head -n 1)
+
+  # Full URL to the latest package
+  TAILSCALE_PKG_URL="https://pkgs.tailscale.com/stable/$LATEST_PKG"
+  INSTALL_DIR="/tmp/tailscale"
+
+  # Download the latest Tailscale .pkg file
+  echo "Downloading Tailscale package from $TAILSCALE_PKG_URL..."
+  curl -L $TAILSCALE_PKG_URL -o /tmp/tailscale.pkg
+
+  # Install the Tailscale package
+  echo "Installing Tailscale..."
+  sudo installer -pkg /tmp/tailscale.pkg -target /
+
+  # Clean up the downloaded package
+  echo "Cleaning up..."
+  rm -f /tmp/tailscale.pkg
+
+  # Verify the installation
+  echo "Verifying installation..."
+  tailscale version
+
+  # Optionally, start the Tailscale service
+  echo "Starting Tailscale..."
+  sudo tailscale up
+
+  echo "Tailscale installation complete!"
+fi
+
+
 
 echo "All tasks completed."

@@ -1,9 +1,0 @@
-[user]
-	name = Seth Abrams
-	email = smarba@gmail.com
-[core]
-	editor = nano
-[color]
-	ui = auto
-[init]
-	defaultBranch = main
