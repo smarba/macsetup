@@ -1,5 +1,5 @@
 #!/bin/zsh
-#test new branch
+
 set -euo pipefail
 
 # Variables
