@@ -24,7 +24,7 @@ pull down ansible repo from github
 
 <pre><code>git clone git@github.com:smarba/ansible.git</code></pre>
 
-<pre><code> curl -L -o /Users/smarba/Downloads/DropboxInstaller.dmg "https://www.dropbox.com/download?os=mac&plat=mac"</code> </pre>
-<pre><code>hdiutil attach /Users/smarba/Downloads/DropboxInstaller.dmg</code></pre>
+<pre><code> curl -L -o $HOME/Downloads/DropboxInstaller.dmg "https://www.dropbox.com/download?os=mac&plat=mac"</code> </pre>
+<pre><code>hdiutil attach $HOME/Downloads/DropboxInstaller.dmg</code></pre>
 <pre><code>cp -R "/Volumes/Dropbox Installer/Dropbox.app" /Applications/</code></pre>
 <pre><code>hdiutil detach "/Volumes/Dropbox Installer"</code></pre>

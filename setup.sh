@@ -52,7 +52,7 @@ else
   echo "Homebrew is already installed."
 fi
 
-# Install Git and Ansible
+# Install Git and Ansible and zsh-syntax-highlighting
 echo "Installing brew packages..."
 echo "Installing Git, Ansible, and zsh-syntax-highlighting..."
 brew install git ansible zsh-syntax-highlighting
@@ -74,14 +74,14 @@ else
   echo "SSH key is already loaded in the agent."
 fi
 
-# Pause to allow user to copy the SSH public key and add it to GitHub
-echo "Your SSH key has been generated. Please copy your public key to GitHub."
-echo "Public key location: ~/.ssh/id_ed25519.pub"
+
 
 # Display the public SSH key for the user to copy
 echo "Your SSH key has been generated. Copy the following public key and add it to GitHub:"
+echo "Public key location: ~/.ssh/id_ed25519.pub"
 cat ~/.ssh/id_ed25519.pub
 echo
+# Pause to allow user to copy the SSH public key and add it to GitHub
 read "REPLY?Press [Enter] after adding your SSH key to GitHub..."
 
 # Test SSH connection to GitHub
