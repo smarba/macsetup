@@ -252,6 +252,18 @@ else
   echo "Tailscale installation complete!"
 fi
 
+#Install Dropbox
+echo "Installing Dropbox..."
+# Check if Dropbox is already installed
+if [ -d "/Applications/Dropbox.app" ]; then
+  echo "Dropbox is already installed."
+else
+  # Download and install Dropbox
+  echo "Downloading Dropbox installer..."
+  source Install_Dropbox.sh
+fi
+
+
 
 
 echo "All tasks completed."
