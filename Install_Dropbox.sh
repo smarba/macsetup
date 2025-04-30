@@ -1,12 +1,12 @@
 #!/bin/zsh
-
+#test new branch
 set -euo pipefail
 
 # Variables
-DOWNLOAD_FOLDER="$HOME/Downloads/"
+DOWNLOAD_FOLDER="$HOME/Downloads"
 DMG_URL="https://www.dropbox.com/download?os=mac&plat=mac"
 DMG_FILE="dropbox_installer.dmg"
-DMG_PATH="$DOWNLOAD_FOLDER$DMG_FILE"
+DMG_PATH="$DOWNLOAD_FOLDER/$DMG_FILE"
 APP_NAME="Dropbox.app"
 MOUNT_POINT="/Volumes/Dropbox Installer"
 APP_SOURCE="$MOUNT_POINT/$APP_NAME"
