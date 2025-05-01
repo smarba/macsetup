@@ -52,10 +52,10 @@ else
   echo "Homebrew is already installed."
 fi
 
-# Install Git and Ansible and zsh-syntax-highlighting
+# Install Git, Ansible, mas,  and zsh-syntax-highlighting
 echo "Installing brew packages..."
 echo "Installing Git, Ansible, and zsh-syntax-highlighting..."
-brew install git ansible zsh-syntax-highlighting
+brew install git ansible zsh-syntax-highlighting mas
 
 # Check if SSH key exists
 if [ -f ~/.ssh/id_ed25519 ]; then
@@ -260,10 +260,21 @@ if [ -d "/Applications/Dropbox.app" ]; then
 else
   # Download and install Dropbox
   echo "Downloading Dropbox installer..."
-  source Install_Dropbox.sh
+  source install_dropbox.sh
 fi
 
+#Set Custom MacOS Settings
+echo "Setting custom MacOS settings..."
+source set-preferences.sh
+echo "Custom MacOS settings applied."
+
+# Install 1Password
+source install-1password.sh
 
 
+# Install Mac App Store Applications
+source install-mas-apps.sh
+echo "Mac App Store applications installed."
 
 echo "All tasks completed."
+echo "Please restart your computer for all changes to take effect."
