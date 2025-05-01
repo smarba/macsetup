@@ -7,11 +7,16 @@ if ! command -v mas &> /dev/null; then
 fi
 
 # Ensure the user is signed in
-echo "Checking if the user is signed in to the Mac App Store..."
-if ! mas account &> /dev/null; then
-  echo "Please sign in to the Mac App Store app first."
-  exit 1
-fi
+#echo "Checking if the user is signed in to the Mac App Store..."
+#if ! mas account &> /dev/null; then
+#  echo "Please sign in to the Mac App Store app first."
+#  exit 1
+#fi
+echo "Please sign in to the Mac App Store app first, if not done already"
+
+# Wait for user to complete the authentication
+read "REPLY?⏳ Press [Enter] once you have completed the Mac App Store Authentication..."
+
 
 # Declare associative array (requires zsh, not bash)
 typeset -A apps=(
