@@ -14,9 +14,6 @@ sudo scutil --set HostName "$clean_name"
 sudo scutil --set LocalHostName "$clean_name"
 sudo scutil --set ComputerName "$raw_name"
 
-# Refresh DNS/mDNS cache
-sudo dscacheutil -flushcache
-sudo killall -HUP mDNSResponder
 
 # Confirm
 echo "✅ Hostnames updated successfully:"
