@@ -1,25 +1,12 @@
 #!/bin/zsh
 
-# Prompt user for new hostname
-read "raw_name?Enter the new host name: "
 
-# Trim leading/trailing whitespace and normalize internal spaces
-raw_name=$(echo "$raw_name" | awk '{$1=$1; print}')
-
-# Remove spaces for HostName and LocalHostName (required by macOS)
-clean_name="${raw_name// /}"
-
-# Set the various hostname types
-sudo scutil --set HostName "$clean_name"
-sudo scutil --set LocalHostName "$clean_name"
-sudo scutil --set ComputerName "$raw_name"
+#Set hostname
+echo "Setting hostname..."
+source set-hostname.sh
+echo "Hostname set applied."
 
 
-# Confirm
-echo "✅ Hostnames updated successfully:"
-echo "  ComputerName:    $raw_name"
-echo "  HostName:        $clean_name"
-echo "  LocalHostName:   $clean_name"
 
 # Check if Xcode Command Line Tools are already installed
 if xcode-select -p &>/dev/null; then
