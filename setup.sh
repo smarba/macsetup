@@ -6,8 +6,11 @@ echo "Setting hostname..."
 source set-hostname.sh
 echo "Hostname set applied."
 
+#Install XCode Command Line Tools
+echo "Checking for Xcode Command Line Tools..."
+./install-xcodetools.sh
 
-
+: <<'XcodeInstall'
 # Check if Xcode Command Line Tools are already installed
 if xcode-select -p &>/dev/null; then
   echo "Xcode Command Line Tools are already installed."
@@ -20,11 +23,18 @@ else
   # Wait for user to complete the installation
   read "REPLY?Press [Enter] once Xcode Command Line Tools installation has completed..."
 fi
+XcodeInstall
 
 #Enable WebInterface for CUPS
 echo "Enabling WebInterface for CUPS..."
 cupsctl WebInterface=Yes
 
+
+
+read "REPLY?Press [Enter] once once the printer is added..."
+
+echo "Now go and set the default options for the printer."
+open "http://localhost:631/printers"
 
 
 
@@ -36,9 +46,9 @@ else
   echo "Homebrew is already installed."
 fi
 
-# Install Git, Ansible, mas,  and zsh-syntax-highlighting
+# Install Git, Ansible, mas, and zsh-syntax-highlighting
 echo "Installing brew packages..."
-echo "Installing Git, Ansible, and zsh-syntax-highlighting..."
+echo "Installing Git, Ansible, mas, and zsh-syntax-highlighting..."
 brew install git ansible zsh-syntax-highlighting mas
 
 # Check if SSH key exists
@@ -197,8 +207,9 @@ for host in $failures; do echo "  - $host"; done
 
 #Install Tailscale Standalone
 echo "Installing Tailscale Standalone..."
+./install-tailscale.sh
 
-
+:<<'TailscaleInstall'
 # Check if Tailscale is already installed
 if [ -d "/Applications/Tailscale.app" ]; then
   echo "Tailscale is already installed."
@@ -235,6 +246,9 @@ else
 
   echo "Tailscale installation complete!"
 fi
+TailscaleInstall
+
+
 
 #Install Dropbox
 echo "Installing Dropbox..."
@@ -244,7 +258,7 @@ if [ -d "/Applications/Dropbox.app" ]; then
 else
   # Download and install Dropbox
   echo "Downloading Dropbox installer..."
-  source install_dropbox.sh
+  ./install_dropbox.sh
 fi
 
 #Set Custom MacOS Settings
@@ -253,11 +267,11 @@ source set-preferences.sh
 echo "Custom MacOS settings applied."
 
 # Install 1Password
-source install-1password.sh
+./install-1password.sh
 
 
 # Install Mac App Store Applications
-source install-mas-apps.sh
+./install-mas-apps.sh
 echo "Mac App Store applications installed."
 
 echo "All tasks completed."
