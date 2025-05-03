@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+echo "Setting executable permissions for scripts..."
+./determine-chmod.sh
+echo "Permissions set."
 
 #Set hostname
 echo "Setting hostname..."
@@ -7,7 +10,7 @@ source set-hostname.sh
 echo "Hostname set applied."
 
 #Install XCode Command Line Tools
-echo "Checking for Xcode Command Line Tools..."
+echo "Installing Xcode Command Line Tools..."
 ./install-xcodetools.sh
 
 : <<'XcodeInstall'
@@ -36,8 +39,11 @@ read "REPLY?Press [Enter] once once the printer is added..."
 echo "Now go and set the default options for the printer."
 open "http://localhost:631/printers"
 
+#Install homebrew and associated packages
+echo "Installing homebrew and associated packages..."
+./install-homebrew.sh
 
-
+:<<'HomebrewInstall'
 # Install Homebrew (this will automatically add Homebrew to the PATH)
 if ! command -v brew &>/dev/null; then
   echo "Installing Homebrew..."
@@ -46,10 +52,12 @@ else
   echo "Homebrew is already installed."
 fi
 
+
 # Install Git, Ansible, mas, and zsh-syntax-highlighting
 echo "Installing brew packages..."
 echo "Installing Git, Ansible, mas, and zsh-syntax-highlighting..."
 brew install git ansible zsh-syntax-highlighting mas
+HomebrewInstall
 
 # Check if SSH key exists
 if [ -f ~/.ssh/id_ed25519 ]; then
@@ -58,6 +66,7 @@ else
   echo "Generating SSH key with default options and location..."
   ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -N ""
 fi
+
 
 # Check if the key is already added to the agent
 ssh-add -l | grep -q "$(ssh-keygen -lf ~/.ssh/id_ed25519 | awk '{print $2}')"
@@ -273,6 +282,12 @@ echo "Custom MacOS settings applied."
 # Install Mac App Store Applications
 ./install-mas-apps.sh
 echo "Mac App Store applications installed."
+
+echo "Please configure / login to:
+- 1Password
+- Dropbox
+- Tailscale
+"
 
 echo "All tasks completed."
 echo "Please restart your computer for all changes to take effect."
