@@ -12,4 +12,20 @@ fi
 # Install Git, Ansible, mas, and zsh-syntax-highlighting
 echo "Installing brew packages..."
 echo "Installing Git, Ansible, mas, and zsh-syntax-highlighting..."
-brew install git ansible zsh-syntax-highlighting mas
+brew install \
+  git \
+  ansible \
+  zsh-syntax-highlighting \
+  mas
+
+#Install homebrew casks
+echo "Installing Homebrew casks..."
+brew install --cask \
+  visual-studio-code \
+  1password \
+  tailscale \
+  dropbox \
+  zoom \
+  microsoft-office-businesspro \
+  adobe-acrobat-pro
+  

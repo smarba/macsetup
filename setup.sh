@@ -215,8 +215,8 @@ echo "\n❌ Failures:"
 for host in $failures; do echo "  - $host"; done
 
 #Install Tailscale Standalone
-echo "Installing Tailscale Standalone..."
-./install-tailscale.sh
+#echo "Installing Tailscale Standalone..."
+#./install-tailscale.sh
 
 :<<'TailscaleInstall'
 # Check if Tailscale is already installed
@@ -260,15 +260,15 @@ TailscaleInstall
 
 
 #Install Dropbox
-echo "Installing Dropbox..."
+#echo "Installing Dropbox..."
 # Check if Dropbox is already installed
-if [ -d "/Applications/Dropbox.app" ]; then
-  echo "Dropbox is already installed."
-else
+#if [ -d "/Applications/Dropbox.app" ]; then
+#  echo "Dropbox is already installed."
+#else
   # Download and install Dropbox
-  echo "Downloading Dropbox installer..."
-  ./install_dropbox.sh
-fi
+#  echo "Downloading Dropbox installer..."
+#  ./install_dropbox.sh
+#fi
 
 #Set Custom MacOS Settings
 echo "Setting custom MacOS settings..."
@@ -276,7 +276,7 @@ source set-preferences.sh
 echo "Custom MacOS settings applied."
 
 # Install 1Password
-./install-1password.sh
+#./install-1password.sh
 
 
 # Install Mac App Store Applications
