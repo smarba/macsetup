@@ -3,36 +3,31 @@
 echo "Setting executable permissions for scripts..."
 ./determine-chmod.sh
 echo "Permissions set."
+echo
+echo
 
 #Set hostname
 echo "Setting hostname..."
 source set-hostname.sh
 echo "Hostname set applied."
+echo
+echo
 
 #Install XCode Command Line Tools
 echo "Installing Xcode Command Line Tools..."
 ./install-xcodetools.sh
+echo
+echo
 
-: <<'XcodeInstall'
-# Check if Xcode Command Line Tools are already installed
-if xcode-select -p &>/dev/null; then
-  echo "Xcode Command Line Tools are already installed."
-else
-  echo "Xcode Command Line Tools are not installed."
-  # Install Xcode Command Line Tools
-  echo "Installing Xcode Command Line Tools..."
-  xcode-select --install
-
-  # Wait for user to complete the installation
-  read "REPLY?Press [Enter] once Xcode Command Line Tools installation has completed..."
-fi
-XcodeInstall
 
 #Enable WebInterface for CUPS
 echo "Enabling WebInterface for CUPS..."
 cupsctl WebInterface=Yes
 
-
+echo "Go to System Settings and add the printer"
+echo
+echo
+echo
 
 read "REPLY?Press [Enter] once once the printer is added..."
 
@@ -43,21 +38,7 @@ open "http://localhost:631/printers"
 echo "Installing homebrew and associated packages..."
 ./install-homebrew.sh
 
-:<<'HomebrewInstall'
-# Install Homebrew (this will automatically add Homebrew to the PATH)
-if ! command -v brew &>/dev/null; then
-  echo "Installing Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-else
-  echo "Homebrew is already installed."
-fi
 
-
-# Install Git, Ansible, mas, and zsh-syntax-highlighting
-echo "Installing brew packages..."
-echo "Installing Git, Ansible, mas, and zsh-syntax-highlighting..."
-brew install git ansible zsh-syntax-highlighting mas
-HomebrewInstall
 
 # Check if SSH key exists
 if [ -f ~/.ssh/id_ed25519 ]; then
