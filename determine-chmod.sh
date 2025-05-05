@@ -4,11 +4,11 @@
 scripts=(
   "set-hostname.sh"
   "install-xcodetools.sh"
-  "install-vscode.sh"
-  "install_dropbox.sh"
-  "install-tailscale.sh"
+#  "install-vscode.sh"
+#  "install_dropbox.sh"
+#  "install-tailscale.sh"
   "install-mas-apps.sh"
-  "install-1password.sh"
+#  "install-1password.sh"
   "set-preferences.sh"
   "install-homebrew.sh"
 )

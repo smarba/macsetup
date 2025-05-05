@@ -102,8 +102,13 @@ fi
 # Set Git user name and email
 echo "Setting up Git configuration..."
 echo "Setting username and email..."
-git config --global user.name "Seth Abrams"
-git config --global user.email "smarba@gmail.com"
+echo -n "Enter your Full Name: "
+read -r full_name
+
+echo -n "Enter your email address: "
+read -r email
+git config --global user.name "$full_name"
+git config --global user.email "$email"
 
 # Set default editor
 echo "Setting default editor to nano..."
