@@ -66,8 +66,8 @@ echo "      📸 Saving screenshots to Downloads folder..."
 defaults write com.apple.screencapture location -string "${HOME}/Downloads"
 
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
-echo "      📸 Setting screenshot format to PNG..."
-defaults write com.apple.screencapture type -string "png"
+echo "      📸 Setting screenshot format to JPG..."
+defaults write com.apple.screencapture type -string "jpg"
 
 # Disable shadow in screenshots
 echo "      📸 Disabling shadows in screenshots..."
@@ -144,10 +144,29 @@ defaults write com.apple.dock orientation -string left
 echo "      🚫 Disabling recent and suggested apps in the Dock..."
 defaults write com.apple.dock show-recents -bool false
 
-# Set the dock icon size to 50 pixels (64 is default)
+# Set the dock icon size to 45 pixels (64 is default)
 echo "      📏 Setting Dock icon size to 45 pixels..."
 defaults write com.apple.dock tilesize -int 45
 echo
+
+# Make Dock icons of hidden applications translucent
+echo "      🌫️ Making hidden app icons translucent..."
+defaults write com.apple.dock showhidden -bool true
+echo
+
+# Enable auto hide for the Dock
+echo "      ⬇️ Enabling auto-hide for the Dock..."
+defaults write com.apple.dock autohide -bool true
+echo
+# Set the Dock to auto-hide
+echo "      ⬇️ Setting Dock delay to auto-hide..."
+defaults write com.apple.dock autohide-delay -float 0.5
+echo "      ⬇️ Setting Dock animation time to auto-hide..."
+defaults write com.apple.dock autohide-time-modifier -float 0.5
+
+
+
+
 ############################################################################
 # Mouse / Trackpad Settings                                                #
 ############################################################################
