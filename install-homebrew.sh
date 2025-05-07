@@ -16,6 +16,7 @@ brew install \
   git \
   ansible \
   zsh-syntax-highlighting \
+  imagemagick \
   mas
 
 #Install homebrew casks
