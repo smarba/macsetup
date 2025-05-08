@@ -25,6 +25,7 @@ This is the beginning of a mac setup script to run to configure a new mac the wa
 - [ ] Update .zshrc
       <pre><code># Load custom aliases if they exist
       [ -f ~/dotfiles/.aliases ] && source ~/dotfiles/.aliases</code></pre>
+- [ ] Log into ExpressVPN
 
 
 

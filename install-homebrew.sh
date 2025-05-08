@@ -30,8 +30,9 @@ brew install --cask \
   dropbox \
   zoom \
   microsoft-office-businesspro \
-  adobe-acrobat-pro \
+#  adobe-acrobat-pro \
   mpv \
-  vlc
+  vlc \
+  expressvpn
   
 
