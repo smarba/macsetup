@@ -7,7 +7,9 @@ if ! command -v brew &>/dev/null; then
 else
   echo "Homebrew is already installed."
 fi
-
+ # Wait for user to complete the installation
+echo "Read Homebrew installation information.  Do you need to copy info into env or zshrc?"
+read "REPLY?Press [Enter] once Homebrew installation has completed..."
 
 # Install Git, Ansible, mas, and zsh-syntax-highlighting
 echo "Installing brew packages..."
