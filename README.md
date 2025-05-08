@@ -2,7 +2,7 @@
 
 This is the beginning of a mac setup script to run to configure a new mac the way it is desired.
 
-### Task List
+### Task List (In order)
 - [ ] Log into iCloud on Mac
 - [ ] Log into Mac App Store
 - [ ] Log into Messages
