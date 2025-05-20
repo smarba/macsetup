@@ -19,7 +19,8 @@ brew install \
   ansible \
   zsh-syntax-highlighting \
   imagemagick \
-  mas
+  mas \
+  1password-cli
 
 #Install homebrew casks
 echo "Installing Homebrew casks..."
