@@ -34,6 +34,7 @@ brew install --cask \
 #  adobe-acrobat-pro \
   mpv \
   vlc \
-  expressvpn
+  expressvpn \
+  dockdoor
   
 
