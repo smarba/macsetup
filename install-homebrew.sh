@@ -35,6 +35,7 @@ brew install --cask \
   mpv \
   vlc \
   expressvpn \
-  dockdoor
+  dockdoor \
+  linearmouse
   
 
