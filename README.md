@@ -14,6 +14,8 @@ This is the beginning of a mac setup script to run to configure a new mac the wa
 - [ ] Execute setup.sh
       <pre><code>./setup.sh</code></pre>
 - [ ] Clone dotfiles, ansible, macsetup repos
+- [ ] Set JetBrainsMono Nerd Font in Terminal.app
+      <pre><code>Terminal → Settings → Profiles → [profile] → Font → Change → JetBrainsMono Nerd Font</code></pre>
 - [ ] Clone ZSH plugins
       <pre><code>mkdir -p ~/.config/zsh/plugins
 git clone https://github.com/zdharma-continuum/fast-syntax-highlighting ~/.config/zsh/plugins/fast-syntax-highlighting

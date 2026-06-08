@@ -26,11 +26,13 @@ brew install \
   fd \
   ripgrep \
   fzf \
-  zoxide
+  zoxide \
+  starship
 
 #Install homebrew casks
 echo "Installing Homebrew casks..."
 brew install --cask \
+  font-jetbrains-mono-nerd-font \
   visual-studio-code \
   1password \
   tailscale \

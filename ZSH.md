@@ -192,10 +192,50 @@ Example: type `docker` then press up arrow — cycles through every docker comma
 
 ---
 
-## What's Coming (Phases 4–5)
+## Prompt — Starship
+
+Replaces the old `zsh-git-prompt` custom prompt. Config lives at `~/.config/starship.toml`.
+
+### What the prompt shows
+- Current directory (last 3 segments)
+- Git branch and status:
+  - `⇡N` — N commits ahead of remote
+  - `⇣N` — N commits behind remote
+  - `~` — modified files
+  - `…` — untracked files
+  - `+` — staged files
+  - `!` — merge conflicts
+- `❯` in green (last command succeeded) or red (last command failed)
+- Command duration when a command takes more than 2 seconds
+
+### To customize
+Edit `~/.config/starship.toml`. Full reference: https://starship.rs/config/
+
+### To unwind (revert to old prompt)
+In `~/.config/zsh/.zshrc`:
+1. Comment out `eval "$(starship init zsh)"`
+2. Uncomment the `zsh-git-prompt` block and `PROMPT=` line (marked "Replaced by Starship")
+3. `source ~/.zshrc`
+
+### Nerd Fonts — PENDING MANUAL STEP
+Icons in eza (`ll`, `la`) and Starship require a Nerd Font set in your terminal.
+
+**Install the font:**
+```bash
+brew install --cask font-jetbrains-mono-nerd-font
+```
+
+**Set it in Terminal.app:**
+1. Open **Terminal → Settings → Profiles → [your profile] → Font → Change**
+2. Select **JetBrainsMono Nerd Font**
+3. Choose size (13–14pt recommended)
+4. Close and reopen a terminal window
+
+---
+
+## What's Coming (Phase 5)
 
 See `zsh-improvements.md` in `/opt/claude/infra/` for the full roadmap. Next up:
 
-- **Phase 4** — Starship prompt (replaces `zsh-git-prompt`) + Nerd Fonts (also enables eza icons)
-- **Phase 5** — File restructuring: `ZDOTDIR`, split config into `conf.d/`
+- **Phase 5** — File restructuring: `ZDOTDIR`, split config into `conf.d/`, cache `op completion`, cache `compinit`
 - **Deferred** — `zsh-vi-mode` (skipped for now — enables vi keybindings in terminal)
