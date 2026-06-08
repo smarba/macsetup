@@ -249,9 +249,17 @@ brew install --cask font-jetbrains-mono-nerd-font
 
 ---
 
-## What's Coming (Phase 5)
+## Shell Startup Performance
 
-See `zsh-improvements.md` in `/opt/claude/infra/` for the full roadmap. Next up:
+### compinit cache
+The completion index (`~/.zcompdump`) is only rebuilt once per day instead of on every shell start. No action needed — happens automatically.
 
-- **Phase 5** — File restructuring: `ZDOTDIR`, split config into `conf.d/`, cache `op completion`, cache `compinit`
-- **Deferred** — `zsh-vi-mode` (skipped for now — enables vi keybindings in terminal)
+---
+
+## What's Coming (deferred)
+
+See `zsh-improvements.md` in `/opt/claude/infra/` for the full roadmap.
+
+- **ZDOTDIR** — set `~/.zshenv` so zsh finds config in `~/.config/zsh/` natively without symlinks
+- **Split config** — break `.zshrc` into `conf.d/` files (history, completion, bindings, plugins, prompt)
+- **zsh-vi-mode** — enables vi keybindings in terminal (skipped for now)
