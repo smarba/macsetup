@@ -44,7 +44,7 @@ Replaces `ls`. Shows file icons, git status, and color-coded output.
 | `la` | Long listing including hidden files + git status |
 | `lt` | Tree view of current directory |
 
-> Requires a Nerd Font to display icons correctly. See Phase 4 of `zsh-improvements.md`.
+> Requires a Nerd Font. See the **Prompt — Starship** section below for install instructions.
 
 ---
 

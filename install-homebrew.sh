@@ -1,26 +1,25 @@
 #!/bin/zsh
 
-# Install Homebrew (this will automatically add Homebrew to the PATH)
+# Install Homebrew if not already present
 if ! command -v brew &>/dev/null; then
   echo "Installing Homebrew..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo "Read Homebrew installation information. Do you need to copy info into env or zshrc?"
+  read "REPLY?Press [Enter] once Homebrew installation has completed..."
 else
   echo "Homebrew is already installed."
 fi
- # Wait for user to complete the installation
-echo "Read Homebrew installation information.  Do you need to copy info into env or zshrc?"
-read "REPLY?Press [Enter] once Homebrew installation has completed..."
 
-# Install brew packages
-echo "Installing brew packages..."
+# ── Formulae ──────────────────────────────────────────────────────────────────
+echo "Installing Homebrew formulae..."
 brew install \
   git \
   ansible \
-  zsh-syntax-highlighting \
-  zsh-autosuggestions \
   imagemagick \
   mas \
   1password-cli \
+  zsh-autosuggestions \
+  zsh-syntax-highlighting \
   eza \
   bat \
   fd \
@@ -29,7 +28,7 @@ brew install \
   zoxide \
   starship
 
-#Install homebrew casks
+# ── Casks ─────────────────────────────────────────────────────────────────────
 echo "Installing Homebrew casks..."
 brew install --cask \
   font-jetbrains-mono-nerd-font \
@@ -39,11 +38,8 @@ brew install --cask \
   dropbox \
   zoom \
   microsoft-office-businesspro \
-#  adobe-acrobat-pro \
   mpv \
   vlc \
   expressvpn \
   dockdoor \
   linearmouse
-  
-
