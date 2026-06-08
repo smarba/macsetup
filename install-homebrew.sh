@@ -11,16 +11,22 @@ fi
 echo "Read Homebrew installation information.  Do you need to copy info into env or zshrc?"
 read "REPLY?Press [Enter] once Homebrew installation has completed..."
 
-# Install Git, Ansible, mas, and zsh-syntax-highlighting
+# Install brew packages
 echo "Installing brew packages..."
-echo "Installing Git, Ansible, mas, and zsh-syntax-highlighting..."
 brew install \
   git \
   ansible \
   zsh-syntax-highlighting \
+  zsh-autosuggestions \
   imagemagick \
   mas \
-  1password-cli
+  1password-cli \
+  eza \
+  bat \
+  fd \
+  ripgrep \
+  fzf \
+  zoxide
 
 #Install homebrew casks
 echo "Installing Homebrew casks..."
