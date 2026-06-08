@@ -196,17 +196,35 @@ Example: type `docker` then press up arrow — cycles through every docker comma
 
 Replaces the old `zsh-git-prompt` custom prompt. Config lives at `~/.config/starship.toml`.
 
-### What the prompt shows
-- Current directory (last 3 segments)
-- Git branch and status:
-  - `⇡N` — N commits ahead of remote
-  - `⇣N` — N commits behind remote
-  - `~` — modified files
-  - `…` — untracked files
-  - `+` — staged files
-  - `!` — merge conflicts
-- `❯` in green (last command succeeded) or red (last command failed)
-- Command duration when a command takes more than 2 seconds
+### What the prompt looks like
+```
+~/.config/zsh on  main [~…] ❯
+```
+
+### What each part means
+| Part | What it shows |
+|------|--------------|
+| `~/.config/zsh` | Current directory (last 3 segments) |
+| ` main` | Git branch (with  icon — requires Nerd Font, otherwise shows text) |
+| `[~…]` | Git status — see symbols below |
+| `❯` | Green = last command succeeded · Red = last command failed |
+| `took 3s` | Shown when a command takes more than 2 seconds |
+
+### Git status symbols
+| Symbol | Meaning |
+|--------|---------|
+| `⇡N` | N commits ahead of remote |
+| `⇣N` | N commits behind remote |
+| `~` | Modified files (unstaged) |
+| `…` | Untracked files |
+| `+` | Staged files |
+| `!` | Merge conflicts |
+
+### Format
+The prompt format is explicitly defined in `starship.toml` to suppress language/runtime detection (Swift, Python, Node, etc. that macOS triggers automatically):
+```toml
+format = "$directory$git_branch$git_status$cmd_duration$character"
+```
 
 ### To customize
 Edit `~/.config/starship.toml`. Full reference: https://starship.rs/config/
@@ -217,17 +235,15 @@ In `~/.config/zsh/.zshrc`:
 2. Uncomment the `zsh-git-prompt` block and `PROMPT=` line (marked "Replaced by Starship")
 3. `source ~/.zshrc`
 
-### Nerd Fonts — PENDING MANUAL STEP
-Icons in eza (`ll`, `la`) and Starship require a Nerd Font set in your terminal.
-
-**Install the font:**
+### Nerd Fonts
+**Install:**
 ```bash
 brew install --cask font-jetbrains-mono-nerd-font
 ```
 
 **Set it in Terminal.app:**
 1. Open **Terminal → Settings → Profiles → [your profile] → Font → Change**
-2. Select **JetBrainsMono Nerd Font**
+2. Select **JetBrainsMono Nerd Font Mono (NFM)**
 3. Choose size (13–14pt recommended)
 4. Close and reopen a terminal window
 
