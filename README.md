@@ -14,6 +14,10 @@ This is the beginning of a mac setup script to run to configure a new mac the wa
 - [ ] Execute setup.sh
       <pre><code>./setup.sh</code></pre>
 - [ ] Clone dotfiles, ansible, macsetup repos
+- [ ] Clone ZSH plugins
+      <pre><code>mkdir -p ~/.config/zsh/plugins
+git clone https://github.com/zdharma-continuum/fast-syntax-highlighting ~/.config/zsh/plugins/fast-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-history-substring-search ~/.config/zsh/plugins/zsh-history-substring-search</code></pre>
 - [ ] Log into iPassword
   - [ ] Configure 1Password
   - [ ] Configure iPassword for Safari

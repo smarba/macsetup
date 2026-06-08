@@ -182,14 +182,20 @@ Direct SSH to each Pi over Tailscale (internal IPs — must be on Tailscale).
 | Plugin | What it does |
 |--------|-------------|
 | `zsh-autosuggestions` | Suggests completions from history as you type — press `→` to accept |
-| `zsh-syntax-highlighting` | Colors commands as you type — red = invalid, green = valid |
+| `fast-syntax-highlighting` | Colors commands as you type — red = invalid, green = valid. Faster and more accurate than `zsh-syntax-highlighting` |
+| `zsh-history-substring-search` | Up/down arrows search history by prefix — type part of a command then arrow up to cycle through all matches |
+
+### History Substring Search — how to use
+Type any part of a previous command, then press the **up arrow** to cycle through all history entries that contain that text. Press **down arrow** to go forward. Press `Enter` to run the selected command.
+
+Example: type `docker` then press up arrow — cycles through every docker command you've run.
 
 ---
 
-## What's Coming (Phases 3–5)
+## What's Coming (Phases 4–5)
 
 See `zsh-improvements.md` in `/opt/claude/infra/` for the full roadmap. Next up:
 
-- **Phase 3** — Plugin upgrades: `fast-syntax-highlighting`, `zsh-history-substring-search`, optional `zsh-vi-mode`
-- **Phase 4** — Starship prompt (replaces `zsh-git-prompt`) + Nerd Fonts
+- **Phase 4** — Starship prompt (replaces `zsh-git-prompt`) + Nerd Fonts (also enables eza icons)
 - **Phase 5** — File restructuring: `ZDOTDIR`, split config into `conf.d/`
+- **Deferred** — `zsh-vi-mode` (skipped for now — enables vi keybindings in terminal)
