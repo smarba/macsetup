@@ -126,11 +126,20 @@ zi               # interactive fuzzy picker of all known directories (uses fzf)
 
 ---
 
-## Homebrew
+## Homebrew & Plugins
 
 | Command | What it does |
 |---------|-------------|
-| `brewup` | `brew update && brew upgrade && brew upgrade --cask && brew cleanup` in one step |
+| `brewup` | Updates Homebrew formulae, casks, and ZSH plugins in one step |
+| `pluginsup` | Pulls latest for each plugin in `~/.config/zsh/plugins/` |
+
+ZSH plugins are plain git clones — not managed by Homebrew. `brewup` calls `pluginsup` automatically, or run `pluginsup` standalone to update plugins only.
+
+**To add a new plugin:**
+```bash
+git clone <url> ~/.config/zsh/plugins/<name>
+```
+Then source it in `~/.config/zsh/.zshrc`.
 
 ---
 
