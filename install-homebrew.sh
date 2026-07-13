@@ -25,6 +25,7 @@ brew install \
   fd \
   ripgrep \
   fzf \
+  gh \
   zoxide \
   starship
 
