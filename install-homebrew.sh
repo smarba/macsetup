@@ -20,7 +20,8 @@ brew install \
   zsh-syntax-highlighting \
   imagemagick \
   mas \
-  1password-cli
+  1password-cli \
+  mole
 
 #Install homebrew casks
 echo "Installing Homebrew casks..."
