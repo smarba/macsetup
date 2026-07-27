@@ -28,7 +28,8 @@ brew install \
   gh \
   zoxide \
   starship \
-  mole
+  mole \
+  multitail
 
 # ── Casks ─────────────────────────────────────────────────────────────────────
 echo "Installing Homebrew casks..."
