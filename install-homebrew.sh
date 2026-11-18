@@ -17,7 +17,6 @@ brew install \
   ansible \
   imagemagick \
   mas \
-  1password-cli \
   zsh-autosuggestions \
   zsh-syntax-highlighting \
   eza \
@@ -37,12 +36,12 @@ brew install --cask \
   font-jetbrains-mono-nerd-font \
   visual-studio-code \
   1password \
-  tailscale \
+  1password-cli \
+  tailscale-app \
   dropbox \
   zoom \
-  microsoft-office-businesspro \
-  mpv \
-  vlc \
   expressvpn \
-  dockdoor \
-  linearmouse
+  claude-code \
+  forel \
+  handy \
+  vorssaint
